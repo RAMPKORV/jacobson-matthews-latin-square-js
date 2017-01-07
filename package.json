@@ -1,0 +1,9 @@
+{
+  "name": "jacobson-matthews-latin-square-js",
+  "version": "1.0.0",
+  "description": "Generate random latin squares",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Patrik Weibull",
+  "license": "ISC"
+}
