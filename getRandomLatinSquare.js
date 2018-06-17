@@ -1,4 +1,4 @@
-module.exports = (n) => {
+module.exports = (n, minIterations = null) => {
   let idMatrix =
     Array.from({length: n}, (_, i) =>
         Array.from({length: n}, (_, j) => i !== j ? 0 : 1));
@@ -9,7 +9,7 @@ module.exports = (n) => {
 
   let isProper = true;
   let improperCell = null;
-  let minIterations = n*n*n;
+  minIterations = minIterations || n*n*n;
 
   for (let i = 0; i < minIterations || !isProper; i++) {
     let t = Array(3), c = Array(3);
