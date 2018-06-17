@@ -1,4 +1,4 @@
-let latin = require('./index.js');
+let getRandomLatinSquare = require('./getRandomLatinSquare.js');
 
-let square = latin.generate(10);
+let square = getRandomLatinSquare(10);
 console.log(square);
