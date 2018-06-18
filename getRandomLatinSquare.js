@@ -6,11 +6,9 @@ module.exports = (n, minIterations = null) => {
     ...idMatrix.slice(i - n, n).map(e => [...e]),
     ...idMatrix.slice(0, i - n).map(e => [...e])
   ]);
-
   let isProper = true;
   let improperCell = null;
   minIterations = minIterations || n*n*n;
-
   for (let i = 0; i < minIterations || !isProper; i++) {
     let t = Array(3), c = Array(3);
     if (isProper) {
@@ -19,13 +17,10 @@ module.exports = (n, minIterations = null) => {
         t[1] = Math.floor((Math.random() * n));
         t[2] = Math.floor((Math.random() * n));
       } while (cube[t[0]][t[1]][t[2]] != 0);
-      let i = 0;
-      while(cube[i][t[1]][t[2]] == 0) i++;
-      c[0] = i; i = 0;
-      while(cube[t[0]][i][t[2]] == 0) i++;
-      c[1] = i; i = 0;
-      while(cube[t[0]][t[1]][i] == 0) i++;
-      c[2] = i;
+      let i;
+      for(i = 0; cube[i][t[1]][t[2]] == 0; i++); c[0] = i;
+      for(i = 0; cube[t[0]][i][t[2]] == 0; i++); c[1] = i;
+      for(i = 0; cube[t[0]][t[1]][i] == 0; i++); c[2] = i;
     } else {
       t = improperCell;
       let skipNext = Math.random() < 0.5;
