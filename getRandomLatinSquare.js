@@ -13,9 +13,11 @@ module.exports = (n, minIterations = null) => {
     let t = Array(3), c = Array(3);
     if (isProper) {
       do {
-        t[0] = Math.floor((Math.random() * n));
-        t[1] = Math.floor((Math.random() * n));
-        t[2] = Math.floor((Math.random() * n));
+        t = [
+          Math.floor((Math.random() * n)),
+          Math.floor((Math.random() * n)),
+          Math.floor((Math.random() * n))
+        ];
       } while (cube[t[0]][t[1]][t[2]] != 0);
       let i;
       for(i = 0; cube[i][t[1]][t[2]] == 0; i++); c[0] = i;
@@ -23,26 +25,13 @@ module.exports = (n, minIterations = null) => {
       for(i = 0; cube[t[0]][t[1]][i] == 0; i++); c[2] = i;
     } else {
       t = improperCell;
-      let skipNext = Math.random() < 0.5;
+      let skipNexts = [
+        Math.random() < 0.5, Math.random() < 0.5, Math.random() < 0.5
+      ];
       for (let i = 0; i < n; i++) {
-        if (cube[i][t[1]][t[2]] == 1) {
-          c[0] = i;
-          if (!skipNext) break;
-        }
-      }
-      skipNext = Math.random() < 0.5;
-      for (let i = 0; i < n; i++) {
-        if (cube[t[0]][i][t[2]] == 1) {
-          c[1] = i;
-          if (!skipNext) break;
-        }
-      }
-      skipNext = Math.random() < 0.5;
-      for (let i = 0; i < n; i++) {
-        if (cube[t[0]][t[1]][i] == 1) {
-          c[2] = i;
-          if (!skipNext) break;
-        }
+        if ((!c[0] || !skipNexts[0]) && cube[i][t[1]][t[2]] == 1) c[0] = i;
+        if ((!c[1] || !skipNexts[1]) && cube[t[0]][i][t[2]] == 1) c[1] = i;
+        if ((!c[2] || !skipNexts[2]) && cube[t[0]][t[1]][i] == 1) c[2] = i;
       }
     }
     cube[t[0]][t[1]][t[2]]++;
