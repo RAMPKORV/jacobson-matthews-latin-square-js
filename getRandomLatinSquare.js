@@ -24,16 +24,6 @@ module.exports = (n, minIterations = null) => {
       for(j = 0; cube[t[0]][t[1]][j] == 0; j++); c[2] = j;
     } else {
       t = improperCell;
-      /*
-      let skipNexts = [
-        Math.random() < 0.5, Math.random() < 0.5, Math.random() < 0.5
-      ];
-      for (j = 0; j < n; j++) {
-        if ((!c[0] || !skipNexts[0]) && cube[j][t[1]][t[2]] == 1) c[0] = j;
-        if ((!c[1] || !skipNexts[1]) && cube[t[0]][j][t[2]] == 1) c[1] = j;
-        if ((!c[2] || !skipNexts[2]) && cube[t[0]][t[1]][j] == 1) c[2] = j;
-      }
-      */
       let candidates = [[],[],[]];
       for (j = 0; j < n; j++) {
         if (cube[j][t[1]][t[2]] == 1) candidates[0].push(j);
