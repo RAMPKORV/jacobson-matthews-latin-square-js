@@ -19,9 +19,9 @@ const getRandomLatinSquare = (n, minIterations = null) => {
           Math.floor((Math.random() * n))
         ];
       } while (cube[t[0]][t[1]][t[2]] != 0);
-      for(j = 0; cube[j][t[1]][t[2]] == 0; j++); c[0] = j;
-      for(j = 0; cube[t[0]][j][t[2]] == 0; j++); c[1] = j;
-      for(j = 0; cube[t[0]][t[1]][j] == 0; j++); c[2] = j;
+      for (j = 0; cube[j][t[1]][t[2]] == 0; j++); c[0] = j;
+      for (j = 0; cube[t[0]][j][t[2]] == 0; j++); c[1] = j;
+      for (j = 0; cube[t[0]][t[1]][j] == 0; j++); c[2] = j;
     } else {
       t = improperCell;
       let candidates = [[],[],[]];
@@ -42,13 +42,14 @@ const getRandomLatinSquare = (n, minIterations = null) => {
     cube[t[0]][c[1]][t[2]]--;
     cube[c[0]][t[1]][t[2]]--;
     cube[c[0]][c[1]][c[2]]--;
+
     isProper = cube[c[0]][c[1]][c[2]] != -1;
     if (!isProper) improperCell = [...c];
   }
   let square = idMatrix;
-  for(let x = 0; x < n; x++) {
-    for(let y = 0; y < n; y++) {
-      for(let s = 0; s < n; s++) {
+  for (let x = 0; x < n; x++) {
+    for (let y = 0; y < n; y++) {
+      for (let s = 0; s < n; s++) {
         if(cube[x][y][s] == 1) {
           square[x][y] = s;
           break;
